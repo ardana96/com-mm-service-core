@@ -1,0 +1,10 @@
+FROM microsoft/aspnetcore-build:2.0.2
+WORKDIR /app
+
+COPY Com.MM.Service.Core.Lib/*.csproj ./Com.MM.Service.Core.Lib/
+COPY Com.MM.Service.Core.WebApi/*.csproj ./Com.MM.Service.Core.WebApi/
+RUN dotnet restore ./Com.MM.Service.Core.WebApi/
+
+COPY Com.MM.Service.Core.Lib/. ./Com.MM.Service.Core.Lib/
+COPY Com.MM.Service.Core.WebApi/. ./Com.MM.Service.Core.WebApi/
+RUN dotnet publish ./Com.MM.Service.Core.WebApi/ --output /out/ --configuration Release
