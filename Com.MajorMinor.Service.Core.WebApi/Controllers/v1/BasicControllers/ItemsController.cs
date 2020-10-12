@@ -160,6 +160,29 @@ namespace Com.MM.Service.Core.WebApi.Controllers.v1.BasicControllers
             }
         }
 
+        [HttpGet("byCode/{code}")]
+        public IActionResult GetByCode([FromRoute] string code)
+        {
+            try
+            {
+                ItemViewModel Data = service.GetByCode(code);
+                //List<ItemViewModel> Data = service.GetCode(code);
+
+                Dictionary<string, object> Result =
+                     new ResultFormatter(ApiVersion, General.OK_STATUS_CODE, General.OK_MESSAGE)
+                     .Ok(Data);
+
+                return Ok(Result);
+            }
+            catch (Exception e)
+            {
+                Dictionary<string, object> Result =
+                    new ResultFormatter(ApiVersion, General.INTERNAL_ERROR_STATUS_CODE, e.Message)
+                    .Fail();
+                return StatusCode(General.INTERNAL_ERROR_STATUS_CODE, Result);
+            }
+        }
+
 
         [HttpGet("readAll/{image}")]
         public async Task<IActionResult> GetImage([FromRoute] string image)

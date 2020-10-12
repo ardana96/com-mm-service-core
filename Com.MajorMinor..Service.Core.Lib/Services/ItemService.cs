@@ -397,7 +397,7 @@ namespace Com.MM.Service.Core.Lib.Services
             //return 
             //    DbContext.Items.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
             Item item = DbContext.Items.FirstOrDefault(x => x.Id == Id && x._IsDeleted.Equals(false));
-            if (item.ImagePath != null)
+            if (!string.IsNullOrWhiteSpace(item.ImagePath))
             {
                 item.ImgFile = await this.AzureImageService.DownloadImage(item.GetType().Name, item.ImagePath);
             }
@@ -500,6 +500,17 @@ namespace Com.MM.Service.Core.Lib.Services
                 price = x.DomesticSale
 
             }).ToListAsync();
+        }
+
+        public ItemViewModel GetByCode(string code)
+        {
+            var item = DbContext.Items.Where(y => y.Code == code);
+            return item.Select(y => new ItemViewModel()
+            {
+                _id = y.Id,
+                //    price = y.DomesticSale
+
+            }).FirstOrDefault();
         }
 
         private IAzureImageService AzureImageService
