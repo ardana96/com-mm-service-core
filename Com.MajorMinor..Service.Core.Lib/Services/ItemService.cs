@@ -627,6 +627,12 @@ namespace Com.MM.Service.Core.Lib.Services
                 ItemOld.ArticleSubCountersId = model.subCounters._id;
                 ItemOld.StyleDocCode = model.subCounters.code;
                 ItemOld.StyleDocName = model.subCounters.name;
+                ItemOld.ArticleColorsId = model.color._id;
+                ItemOld.ColorCode = model.color.code;
+                ItemOld.ColorDocName = model.color.name;
+                ItemOld.ArticleCategoriesId = model.categories._id;
+                ItemOld.CategoryDocCode = model.categories.code;
+                ItemOld.CategoryDocName = model.categories.name;
                 ItemOld.ImagePath = IMagePath;
                 //ItemOld.ImgFile = model.ImageFile;
 
