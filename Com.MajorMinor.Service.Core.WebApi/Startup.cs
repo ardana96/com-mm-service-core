@@ -73,9 +73,9 @@ namespace Com.MM.Service.Core.WebApi
                 .AddTransient<StorageService>()
                 .AddTransient<ExpeditionService>()
                 .AddTransient<IAzureImageService, AzureImageService>()
-
+                .AddTransient<BankService>()
                 .AddTransient<PermissionService>()
-           
+                .AddTransient<CardTypeService>()
                 .AddTransient<RolesService>()
            
                 .AddTransient<RolesService>()

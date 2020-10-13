@@ -282,7 +282,12 @@ namespace Com.MM.Service.Core.Lib.Services
                 item.ArticleProcessId = 0;
                 item.ProcessDocCode = null;
             }
-
+            if (!Equals(itemVM.color, null))
+            {
+                item.ColorCode = itemVM.color.code;
+                item.ArticleColorsId = itemVM.color._id;
+                item.ColorDocName = itemVM.color.name;
+            }
             if (!Equals(itemVM.materials, null))
             {
                 item.ArticleMaterialsId = itemVM.materials._id;
@@ -459,7 +464,7 @@ namespace Com.MM.Service.Core.Lib.Services
             var data = DbSet.Where(x => x.ArticleRealizationOrder.Equals(ro) && x.Name.Equals(name) && x.Code.Equals(code)).FirstOrDefault();
             return MapToViewModel(data);
         }
-        public Task<ItemViewModelRead> GetCode2(string code)
+        public Task<List<ItemViewModelRead>> GetCode2(string code)
         {
 
             var item = DbContext.Items.Where(x => x.Code == code);
@@ -484,7 +489,7 @@ namespace Com.MM.Service.Core.Lib.Services
                 InternationalSale = x.InternationalSale,
                 InternationalWholesale = x.InternationalWholesale,
 
-            }).FirstOrDefaultAsync();
+            }).ToListAsync();
         }
 
         public Task<List<ItemViewModel>> GetCode(string code)

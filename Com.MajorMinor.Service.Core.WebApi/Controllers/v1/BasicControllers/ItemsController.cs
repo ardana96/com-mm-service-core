@@ -217,7 +217,7 @@ namespace Com.MM.Service.Core.WebApi.Controllers.v1.BasicControllers
 
                 // service.Username = User.Claims.Single(p => p.Type.Equals("username")).Value;
 
-                ItemViewModelRead Data = await service.GetCode2(code);
+                List<ItemViewModelRead> Data = await service.GetCode2(code);
 
                 Dictionary<string, object> Result =
                     new ResultFormatter(ApiVersion, General.OK_STATUS_CODE, General.OK_MESSAGE)

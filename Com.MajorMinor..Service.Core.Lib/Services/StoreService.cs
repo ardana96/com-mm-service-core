@@ -1,4 +1,5 @@
-﻿using Com.MM.Service.Core.Lib.Helpers;
+﻿using Com.MajorMinor.Service.Core.Lib.ViewModels;
+using Com.MM.Service.Core.Lib.Helpers;
 using Com.MM.Service.Core.Lib.Interfaces;
 using Com.MM.Service.Core.Lib.Models;
 using Com.MM.Service.Core.Lib.ViewModels;
@@ -137,6 +138,55 @@ namespace Com.MM.Service.Core.Lib.Services
             var store = (from a in DbContext.Stores
                          where a.StoreCategory.Contains((string.IsNullOrWhiteSpace(category) ? a.StoreCategory : category))
                          select a).ToListAsync();
+            return store;
+        }
+
+        public Task<Store> GetStoreByCode(string code)
+        {
+            var store = (from a in DbContext.Stores
+                         where a.Code.Contains((string.IsNullOrWhiteSpace(code) ? a.Code : code))
+                         select a).FirstOrDefaultAsync();
+            return store;
+        }
+
+        public Task<StoreStorageViewModel> GetStoreStorageByCode(string code)
+        {
+            var store = (from a in DbContext.Stores
+                         join b in DbContext.Storages on a.Code equals b.Code
+                         where a.Code.Contains((string.IsNullOrWhiteSpace(code) ? a.Code : code))
+                         select new StoreStorageViewModel{
+                             address = a.Address,
+                             city = a.City,
+                             closedDate = a.ClosedDate,
+                             code = a.Code,
+                             description = a.Description,
+                             Id = a.Id,
+                             monthlyTotalCost = a.MonthlyTotalCost,
+                             name = a.Name,
+                             onlineOffline = a.OnlineOffline,
+                             openedDate = a.OpenedDate,
+                             phone = a.Phone,
+                             pic = a.Pic,
+                             salesCapital = a.SalesCapital,
+                             salesCategory = a.SalesCategory,
+                             salesTarget = a.SalesTarget,
+                             status = a.Status,
+                             storeArea = a.StoreArea,
+                             storeCategory = a.StoreCategory,
+                             storeWide = a.StoreWide,
+                             storage = new StorageViewModel
+                             {
+                                 Address = b.Address,
+                                 Code = b.Code,
+                                 Description = b.Description,
+                                 IsCentral = b.IsCentral,
+                                 Name = b.Name,
+                                 Phone = b.Phone,
+                                 _id = b.Id
+                                 
+                             }
+                            
+                         }).FirstOrDefaultAsync();
             return store;
         }
     }
