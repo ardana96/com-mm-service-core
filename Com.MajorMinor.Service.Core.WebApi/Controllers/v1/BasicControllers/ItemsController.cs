@@ -4,6 +4,7 @@ using Com.MM.Service.Core.Lib.Services;
 using Com.MM.Service.Core.Lib.ViewModels;
 using Com.MM.Service.Core.WebApi.Helpers;
 using Com.Moonlay.NetCore.Lib.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Com.MM.Service.Core.WebApi.Controllers.v1.BasicControllers
     [Produces("application/json")]
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/items/finished-goods")]
+    
     public class ItemsController : BasicController<ItemService, Item, ItemViewModel, CoreDbContext>
     {
         private new static readonly string ApiVersion = "1.0";
@@ -240,7 +242,7 @@ namespace Com.MM.Service.Core.WebApi.Controllers.v1.BasicControllers
 
                 // service.Username = User.Claims.Single(p => p.Type.Equals("username")).Value;
 
-                ItemViewModelRead Data = await service.GetCode2(code);
+                List<ItemViewModelRead> Data = await service.GetCode2(code);
 
                 Dictionary<string, object> Result =
                     new ResultFormatter(ApiVersion, General.OK_STATUS_CODE, General.OK_MESSAGE)
@@ -300,7 +302,7 @@ namespace Com.MM.Service.Core.WebApi.Controllers.v1.BasicControllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("post-binary")]
         public async Task<IActionResult> PostBinary()
         {
             using (var sr = new StreamReader(Request.Body))
