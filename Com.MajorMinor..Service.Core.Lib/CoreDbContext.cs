@@ -43,7 +43,7 @@ namespace Com.MM.Service.Core.Lib
         public DbSet<Bank>Banks { get; set; }
         public DbSet<CardType> CardTypes { get; set; }
 
-        public IQueryable<Unit> Units { get; internal set; }
+        public DbSet<Unit> Units { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

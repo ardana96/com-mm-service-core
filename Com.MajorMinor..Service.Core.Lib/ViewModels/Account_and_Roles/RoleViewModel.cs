@@ -27,7 +27,7 @@ namespace Com.MM.Service.Core.Lib.ViewModels.Account_and_Roles
 
             foreach (PermissionViewModel permission in Permissions)
             {
-                if (string.IsNullOrWhiteSpace(permission.unit.Name))
+                if (string.IsNullOrWhiteSpace(permission.unit.name))
                 {
                     Count++;
                     permissionError += "{ unit: 'Unit is required' }, ";

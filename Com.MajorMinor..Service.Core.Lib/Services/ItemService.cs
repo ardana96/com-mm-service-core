@@ -626,6 +626,9 @@ namespace Com.MM.Service.Core.Lib.Services
                 ItemOld.ArticleMaterialCompositionsId = model.materialCompositions._id;
                 ItemOld.MaterialCompositionDocCode = model.materialCompositions.code;
                 ItemOld.MaterialCompositionDocName = model.materialCompositions.name;
+                ItemOld.ArticleMaterialsId = model.materials._id;
+                ItemOld.MaterialDocCode = model.materials.code;
+                ItemOld.MaterialDocName = model.materials.name;
                 ItemOld.ArticleCollectionsId = model.collections._id;
                 ItemOld.CollectionDocCode = model.collections.code;
                 ItemOld.CollectionDocName = model.collections.name;

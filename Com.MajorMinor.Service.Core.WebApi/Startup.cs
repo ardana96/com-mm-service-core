@@ -56,9 +56,9 @@ namespace Com.MM.Service.Core.WebApi
 
             services
                 .AddDbContext<CoreDbContext>(options => options.UseSqlServer(connectionString))
-               
+
                 //.AddScoped<AccountService>()
-              
+
                 .AddTransient<ArticleCategoryService>()
                 .AddTransient<ArticleMaterialService>()
                 .AddTransient<ArticleProcesService>()
@@ -77,7 +77,7 @@ namespace Com.MM.Service.Core.WebApi
                 .AddTransient<PermissionService>()
                 .AddTransient<CardTypeService>()
                 .AddTransient<RolesService>()
-           
+                .AddTransient<UnitService>()
                 .AddTransient<RolesService>()
                 .AddTransient<StoreService>()
                 .AddTransient<ModuleService>();

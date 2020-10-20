@@ -47,14 +47,14 @@ namespace Com.MM.Service.Core.Test.Controllers.UnitTest
 
             return new UnitViewModel()
             {
-                Code = string.Format("TEST {0}", guid),
-                Name = string.Format("Unit {0}", guid),
-                Description = "Description",
-                Division = new DivisionViewModel
+                code = string.Format("TEST {0}", guid),
+                name = string.Format("Unit {0}", guid),
+                description = "Description",
+                division = new DivisionViewModel
                 {
-                    Name = "DivisionName",
-                    Code= "DivisionCode",
-                    Id=1
+                    name = "DivisionName",
+                    code= "DivisionCode",
+                    _id=1
                 },
             };
         }
@@ -82,7 +82,7 @@ namespace Com.MM.Service.Core.Test.Controllers.UnitTest
         public async Task Post_Failed_Bad_Request()
         {
             UnitViewModel VM = GenerateTestModel();
-            VM.Code = null;
+            VM.code = null;
             var response = await this.Client.PostAsync(URI, new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -107,7 +107,7 @@ namespace Com.MM.Service.Core.Test.Controllers.UnitTest
         {
             Unit Unit = await DataUtil.GetTestDataAsync();
             UnitViewModel VM = Service.MapToViewModel(Unit);
-            var response = await this.Client.DeleteAsync(string.Concat(URI, "/", VM.Id));
+            var response = await this.Client.DeleteAsync(string.Concat(URI, "/", VM._id));
 
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
@@ -117,7 +117,7 @@ namespace Com.MM.Service.Core.Test.Controllers.UnitTest
         {
             Unit Unit = await DataUtil.GetTestDataAsync();
             UnitViewModel VM = Service.MapToViewModel(Unit);
-            var response = await this.Client.PutAsync(string.Concat(URI, "/", VM.Id), new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
+            var response = await this.Client.PutAsync(string.Concat(URI, "/", VM._id), new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
 
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }

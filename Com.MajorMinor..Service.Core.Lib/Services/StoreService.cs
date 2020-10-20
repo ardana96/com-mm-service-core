@@ -44,16 +44,17 @@ namespace Com.MM.Service.Core.Lib.Services
             /* Const Select */
             List<string> SelectedFields = new List<string>()
             {
-                 "_id","Code", "Name", "description"
+                 "_id","code", "name", "description","address","city","closedDate","monthlyTotalCost","onlineOffline","openedDate",
+                 "pic","phone","salesCapital","salesCategory","salesTarget","status","storeArea","storeCategory","storeWide"
             };
 
-            Query = Query
-                .Select(b => new Store
-                {
-                    Id = b.Id,
-                    Code = b.Code,
-                    Name = b.Name
-                });
+            //Query = Query
+            //    .Select(b => new Store
+            //    {
+            //        Id = b.Id,
+            //        Code = b.Code,
+            //        Name = b.Name
+            //    });
 
             /* Order */
             if (OrderDictionary.Count.Equals(0))
@@ -87,18 +88,35 @@ namespace Com.MM.Service.Core.Lib.Services
         {
             StoreViewModel seasonVM = new StoreViewModel();
 
-            seasonVM.Id = season.Id;
+            seasonVM._id = season.Id;
             seasonVM.UId = season.Uid;
-            seasonVM._IsDeleted = season._IsDeleted;
-            seasonVM.Active = season.Active;
-            seasonVM._CreatedUtc = season._CreatedUtc;
-            seasonVM._CreatedBy = season._CreatedBy;
-            seasonVM._CreatedAgent = season._CreatedAgent;
-            seasonVM._LastModifiedUtc = season._LastModifiedUtc;
-            seasonVM._LastModifiedBy = season._LastModifiedBy;
-            seasonVM._LastModifiedAgent = season._LastModifiedAgent;
+            seasonVM._deleted = season._IsDeleted;
+            seasonVM._active = season.Active;
+            seasonVM._createdDate = season._CreatedUtc;
+            seasonVM._createdBy = season._CreatedBy;
+            seasonVM._createAgent = season._CreatedAgent;
+            seasonVM._updatedDate = season._LastModifiedUtc;
+            seasonVM._updatedBy = season._LastModifiedBy;
+            seasonVM._updateAgent = season._LastModifiedAgent;
             seasonVM.code = season.Code;
             seasonVM.name = season.Name;
+            seasonVM.address = season.Address;
+            seasonVM.city = season.City;
+            seasonVM.closedDate = season.ClosedDate;
+            seasonVM.description = season.Description;
+            seasonVM.monthlyTotalCost = season.MonthlyTotalCost;
+            seasonVM.onlineOffline = season.OnlineOffline;
+            seasonVM.openedDate = season.OpenedDate;
+            seasonVM.phone = season.Phone;
+            seasonVM.pic = season.Pic;
+            seasonVM.salesCapital = season.SalesCapital;
+            seasonVM.salesCategory = season.SalesCategory;
+            seasonVM.salesTarget = season.SalesTarget;
+            seasonVM.status = season.Status;
+            seasonVM.storeArea = season.StoreArea;
+            seasonVM.storeCategory = season.StoreCategory;
+            seasonVM.storeWide = season.StoreWide;
+            
 
 
             return seasonVM;
@@ -108,18 +126,35 @@ namespace Com.MM.Service.Core.Lib.Services
         {
             Store season = new Store();
 
-            season.Id = seasonVM.Id;
+            season.Id = seasonVM._id;
             season.Uid = seasonVM.UId;
-            season._IsDeleted = seasonVM._IsDeleted;
-            season.Active = seasonVM.Active;
-            season._CreatedUtc = seasonVM._CreatedUtc;
-            season._CreatedBy = seasonVM._CreatedBy;
-            season._CreatedAgent = seasonVM._CreatedAgent;
-            season._LastModifiedUtc = seasonVM._LastModifiedUtc;
-            season._LastModifiedBy = seasonVM._LastModifiedBy;
-            season._LastModifiedAgent = seasonVM._LastModifiedAgent;
+            season._IsDeleted = seasonVM._deleted;
+            season.Active = seasonVM._active;
+            season._CreatedUtc = seasonVM._createdDate;
+            season._CreatedBy = seasonVM._createdBy;
+            season._CreatedAgent = seasonVM._createAgent;
+            season._LastModifiedUtc = seasonVM._updatedDate;
+            season._LastModifiedBy = seasonVM._updatedBy;
+            season._LastModifiedAgent = seasonVM._updateAgent;
             season.Code = seasonVM.code;
             season.Name = seasonVM.name;
+            season.Address = seasonVM.address;
+            season.City = season.City;
+            season.ClosedDate = seasonVM.closedDate;
+            season.Description = seasonVM.description;
+            season.MonthlyTotalCost = seasonVM.monthlyTotalCost;
+            season.OnlineOffline = seasonVM.onlineOffline;
+            season.OpenedDate = seasonVM.openedDate;
+            season.Phone = seasonVM.phone;
+            season.Pic = seasonVM.pic;
+            season.SalesCapital = seasonVM.salesCapital;
+            season.SalesCategory = seasonVM.salesCategory;
+            season.SalesTarget = seasonVM.salesTarget;
+            season.Status = seasonVM.status;
+            season.StoreArea = seasonVM.storeArea;
+            season.StoreCategory = seasonVM.storeCategory;
+            season.StoreWide = seasonVM.storeWide;
+            
 
             return season;
         }

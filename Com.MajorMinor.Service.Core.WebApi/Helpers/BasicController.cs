@@ -324,8 +324,10 @@ namespace Com.MM.Service.Core.WebApi.Helpers
             {
                 TModel model = Service.MapToModel(ViewModel);
 
-                Service.Username = User.Claims.Single(p => p.Type.Equals("username")).Value;
                 Service.Token = Request.Headers["Authorization"].First().Replace("Bearer ", "");
+
+                Service.Username = User.Claims.Single(p => p.Type.Equals("username")).Value;
+                
 
                 await Service.CreateModel(model);
 
