@@ -47,8 +47,8 @@ namespace Com.MM.Service.Core.Test.Controllers.DivisionTest
 
             return new DivisionViewModel()
             {
-                Name = string.Format("TEST {0}", guid),
-                Code = string.Format("TEST {0}", guid),
+                name = string.Format("TEST {0}", guid),
+                code = string.Format("TEST {0}", guid),
             };
         }
 
@@ -75,7 +75,7 @@ namespace Com.MM.Service.Core.Test.Controllers.DivisionTest
         public async Task Post_Failed_Bad_Request()
         {
             DivisionViewModel VM = GenerateTestModel();
-            VM.Name = null;
+            VM.name = null;
             var response = await this.Client.PostAsync(URI, new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -100,7 +100,7 @@ namespace Com.MM.Service.Core.Test.Controllers.DivisionTest
         {
             Division division = await DataUtil.GetTestDataAsync();
             DivisionViewModel VM = Service.MapToViewModel(division);
-            var response = await this.Client.DeleteAsync(string.Concat(URI, "/", VM.Id));
+            var response = await this.Client.DeleteAsync(string.Concat(URI, "/", VM._id));
 
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
@@ -110,7 +110,7 @@ namespace Com.MM.Service.Core.Test.Controllers.DivisionTest
         {
             Division division = await DataUtil.GetTestDataAsync();
             DivisionViewModel VM = Service.MapToViewModel(division);
-            var response = await this.Client.PutAsync(string.Concat(URI, "/", VM.Id), new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
+            var response = await this.Client.PutAsync(string.Concat(URI, "/", VM._id), new StringContent(JsonConvert.SerializeObject(VM).ToString(), Encoding.UTF8, "application/json"));
 
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }

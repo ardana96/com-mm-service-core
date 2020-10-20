@@ -18,9 +18,9 @@ namespace Com.MM.Service.Core.Lib.Services.Account_and_Roles
         {
             Permission model = new Permission();
             PropertyCopier<PermissionViewModel, Permission>.Copy(viewModel, model);
-            model.UnitId = viewModel.unit.Id;
-            model.UnitCode = viewModel.unit.Code;
-            model.Unit = viewModel.unit.Name;
+            model.UnitId = viewModel.unit._id;
+            model.UnitCode = viewModel.unit.code;
+            model.Unit = viewModel.unit.name;
             return model;
         }
 
@@ -28,9 +28,9 @@ namespace Com.MM.Service.Core.Lib.Services.Account_and_Roles
         {
             PermissionViewModel viewModel = new PermissionViewModel();
             PropertyCopier<Permission, PermissionViewModel>.Copy(model, viewModel);
-            viewModel.unit.Id = model.UnitId;
-            viewModel.unit.Name = model.Unit;
-            viewModel.unit.Code = model.UnitCode;
+            viewModel.unit._id = model.UnitId;
+            viewModel.unit.name = model.Unit;
+            viewModel.unit.code = model.UnitCode;
             return viewModel;
         }
 

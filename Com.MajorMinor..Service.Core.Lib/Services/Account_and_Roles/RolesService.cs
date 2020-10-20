@@ -43,11 +43,11 @@ namespace Com.MM.Service.Core.Lib.Services.Account_and_Roles
                 permission._CreatedAgent = permissionVM._CreatedAgent;
                 permission._CreatedUtc = permissionVM._CreatedUtc;
                 permission.RoleId = permissionVM.RoleId;
-                permission.UnitId = permissionVM.unit.Id;
-                permission.Unit = permissionVM.unit.Name;
-                permission.UnitCode = permissionVM.unit.Code;
+                permission.UnitId = permissionVM.unit._id;
+                permission.Unit = permissionVM.unit.name;
+                permission.UnitCode = permissionVM.unit.code;
                 permission.permission = permissionVM.permission;
-                permission.Division = permissionVM.unit.Division != null ? permissionVM.unit.Division.Name : null;
+                permission.Division = permissionVM.unit.division != null ? permissionVM.unit.division.name : null;
 
                 role.Permissions.Add(permission);
             }
@@ -70,18 +70,18 @@ namespace Com.MM.Service.Core.Lib.Services.Account_and_Roles
                 {
                     PermissionViewModel permissionVM = new PermissionViewModel();
                     permissionVM.unit = new UnitViewModel();
-                    permissionVM.unit.Division = new DivisionViewModel();
+                    permissionVM.unit.division = new DivisionViewModel();
 
                     permissionVM.Id = permission.Id;
                     permissionVM._CreatedBy = permission._CreatedBy;
                     permissionVM._CreatedAgent = permission._CreatedAgent;
                     permissionVM._CreatedUtc = permission._CreatedUtc;
                     permissionVM.RoleId = permission.RoleId;
-                    permissionVM.unit.Id = permission.UnitId;
-                    permissionVM.unit.Name = permission.Unit;
-                    permissionVM.unit.Code = permission.UnitCode;
+                    permissionVM.unit._id = permission.UnitId;
+                    permissionVM.unit.name = permission.Unit;
+                    permissionVM.unit.code = permission.UnitCode;
                     permissionVM.permission = permission.permission;
-                    permissionVM.unit.Division.Name = permission.Division;
+                    permissionVM.unit.division.name = permission.Division;
 
                     roleVM.Permissions.Add(permissionVM);
                 }

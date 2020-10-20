@@ -3,15 +3,15 @@ using System;
 
 namespace Com.MM.Service.Core.Lib.ViewModels
 {
-    public class UnitViewModel  : BasicViewModel
+    public class UnitViewModel  : BasicViewModelOld
     {
-        public string Code { get; set; }
+        public string code { get; set; }
 
-        public DivisionViewModel Division { get; set; }
+        public DivisionViewModel division { get; set; }
 
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public string Description { get; set; }
-        public string COACode { get; set; }
+        public string description { get; set; }
+        public string cOACode { get; set; }
     }
 }

@@ -115,8 +115,8 @@ namespace Com.MM.Service.Core.Lib.Services
         {
             public DivisionMap()
             {
-                Map(b => b.Name).Index(0);
-                Map(b => b.Description).Index(1);
+                Map(b => b.name).Index(0);
+                Map(b => b.description).Index(1);
             }
         }
 
@@ -130,11 +130,11 @@ namespace Com.MM.Service.Core.Lib.Services
             {
                 ErrorMessage = "";
 
-                if (string.IsNullOrWhiteSpace(divisionVM.Name))
+                if (string.IsNullOrWhiteSpace(divisionVM.name))
                 {
                     ErrorMessage = string.Concat(ErrorMessage, "Nama tidak boleh kosong, ");
                 }
-                else if(Data.Any(d => d != divisionVM && d.Name.Equals(divisionVM.Name)))
+                else if(Data.Any(d => d != divisionVM && d.name.Equals(divisionVM.name)))
                 {
                     ErrorMessage = string.Concat(ErrorMessage, "Nama tidak boleh duplikat, ");
                 }
@@ -142,7 +142,7 @@ namespace Com.MM.Service.Core.Lib.Services
                 if (string.IsNullOrEmpty(ErrorMessage))
                 {
                     /* Service Validation */
-                    if (this.DbSet.Any(d => d._IsDeleted.Equals(false) && d.Name.Equals(divisionVM.Name)))
+                    if (this.DbSet.Any(d => d._IsDeleted.Equals(false) && d.Name.Equals(divisionVM.name)))
                     {
                         ErrorMessage = string.Concat(ErrorMessage, "Nama tidak boleh duplikat, ");
                     }
@@ -153,8 +153,8 @@ namespace Com.MM.Service.Core.Lib.Services
                     ErrorMessage = ErrorMessage.Remove(ErrorMessage.Length - 2);
                     var Error = new ExpandoObject() as IDictionary<string, object>;
 
-                    Error.Add("Nama", divisionVM.Name);
-                    Error.Add("Deskripsi", divisionVM.Description);
+                    Error.Add("Nama", divisionVM.name);
+                    Error.Add("Deskripsi", divisionVM.description);
                     Error.Add("Error", ErrorMessage);
 
                     ErrorList.Add(Error);

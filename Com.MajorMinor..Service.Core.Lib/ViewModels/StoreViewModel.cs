@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Com.MM.Service.Core.Lib.ViewModels
 {
-    public class StoreViewModel : BasicViewModel
+    public class StoreViewModel : BasicViewModelOld
     {
         public string address { get; set; }
         public string city { get; set; }
