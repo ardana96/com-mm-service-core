@@ -39,7 +39,7 @@ namespace Com.MM.Service.Core.Lib.Services
             {
                 List<string> SearchAttributes = new List<string>()
                 {
-                    "Code", "Name", "ArticleRealizationOrder"
+                    "Code", "Name"
                 };
 
                 Query = Query.Where(General.BuildSearch(SearchAttributes), Keyword);
@@ -48,7 +48,7 @@ namespace Com.MM.Service.Core.Lib.Services
             /* Const Select */
             List<string> SelectedFields = new List<string>()
             {
-                "_id", "code", "name", "ArticleRealizationOrder"
+                "_id", "code", "name"
             };
 
 
